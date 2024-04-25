@@ -18,7 +18,7 @@ Everything you do with your site you do at your own risk, I do not bear any resp
 3. In the admin panel, go to extensions and modifiers => modifiers and update the modifier cache
 
 At this stage, the module can be considered installed and now it is displayed in the admin panel in extensions => extensions / modules => "Content reviews".
-In use, the module adheres to the classic opencard UI, so there should be no problems
+In use, the module adheres to the classic opencart UI, so there should be no problems
 
 Now you need to output the module on the client side
 
