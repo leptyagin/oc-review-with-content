@@ -1,0 +1,159 @@
+<h1>{{ review.review_id }}</h1>
+<h1>{{ review.name }}</h1>
+<img src="{{ review.image }}" alt="" />
+
+
+<style>
+  .block {
+    margin: 100px 0px;
+    padding: 70px 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+
+    border-radius: 10px;
+    background: rgb(219, 252, 230);
+  }
+  .block__title {
+    color: #343434;
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 110%;
+    text-align: center;
+  }
+
+  .cards__wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .card {
+    width: 100%;
+    border-radius: 16px;
+    background: rgb(255, 255, 255);
+    padding: 20px;
+
+    display: flex;
+    gap: 35px;
+    justify-content: space-between;
+  }
+
+  .frame__wrapper {
+    position: relative;
+    overflow: hidden;
+    min-width: 50%;
+    height: 300px;
+    border-radius: 10px;
+  }
+
+  .frame__wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card .info {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .card .info .info__head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .card .info .info__head .avatar {
+    border-radius: 50px;
+    width: 60px;
+    height: 60px;
+
+    object-fit: contain;
+  }
+
+  .card .info .info__head .name {
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+    margin: 0;
+  }
+
+  .card .info .description {
+    color: #343434;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+  }
+
+  .swiper {
+    width: 415px;
+    height: 120px;
+  }
+  .img-responsive {
+    border-radius: 10px;
+  }
+</style>
+
+<div class="block">
+  <h2 class="block__title">
+    Нашими площадками пользуются известные блогеры, рестораны и базы отдыха
+  </h2>
+
+  <div class="cards__wrapper">
+    {% for review in reviews|slice(0,4) %}
+    <div class="card">
+      <div class="frame__wrapper">
+        {{ review.frame }}
+      </div>
+
+      <div class="info">
+        <div class="info__head">
+          <img
+            class="avatar"
+            src="{{ review.image }}"
+            alt="name"
+          />
+          <h4 class="name">{{ review.name }}</h4>
+        </div>
+        <div class="description">{{ review.description }}</div>
+        {% if review.images %}
+
+          <div class="swiper swiper1">
+            <div class="swiper-wrapper">
+             {% for image in review.images %}
+              <div class="swiper-slide">
+                <a
+                  class="test-popup-link"
+                  href="{{ image.url }}"
+                >
+                  <img
+                    class="img-responsive"
+                    src="{{ image.url }}"
+                    alt=""
+                  />
+                </a>
+              </div>
+             {% endfor %}
+            
+            </div>
+
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
